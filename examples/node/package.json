@@ -1,0 +1,8 @@
+{
+  "name": "example-node-checkout",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "ecommerce-cart-core": "file:../../packages/js"
+  }
+}
