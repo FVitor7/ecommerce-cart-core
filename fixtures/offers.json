@@ -1,0 +1,8 @@
+{
+  "offers": [
+    { "sku": "COFFEE-500G", "ean": "7891234000019", "price": 18.90, "discountedPrice": 15.90 },
+    { "ean": "7891234000033", "price": 39.90, "discountedPrice": 34.90 },
+    { "sku": "DETERGENT-1600G", "ean": "7891234000057", "price": 23.90, "discountedPrice": 19.90 },
+    { "sku": "BEANS-1KG", "ean": "7891234000064", "price": 8.49, "discountedPrice": 6.99 }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "cartItems": [
+    { "sku": "COFFEE-500G", "ean": "7891234000019", "name": "Ground Coffee 500g", "price": 18.90, "quantity": 2, "stock": 40 },
+    { "sku": "RICE-5KG", "ean": "7891234000026", "name": "White Rice 5kg", "price": 27.90, "quantity": 1, "stock": 15 },
+    { "sku": "OLIVE-OIL-500ML", "ean": "7891234000033", "name": "Extra Virgin Olive Oil 500ml", "price": 39.90, "quantity": 4, "stock": 2 },
+    { "sku": "MILK-1L", "ean": "7891234000040", "name": "Whole Milk 1L", "price": 4.79, "quantity": 12, "stock": 0 },
+    { "sku": "DETERGENT-1600G", "ean": "7891234000057", "name": "Laundry Detergent 1.6kg", "price": 21.90, "quantity": 1, "stock": 8 },
+    { "sku": "BAG", "name": "Plastic Bag", "price": 0.10, "quantity": 3, "stock": 500 },
+    { "sku": "COFFEE-500G", "ean": "7891234000019", "name": "Ground Coffee 500g", "price": 18.90, "quantity": 1, "stock": 40 }
+  ]
+}

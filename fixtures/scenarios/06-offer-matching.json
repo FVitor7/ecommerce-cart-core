@@ -1,0 +1,57 @@
+{
+  "description": "Offer matching: every identifier an offer provides (sku, ean) must match the item. EANs are compared as GTIN-14, so UPC-A 036000291452 and EAN-13 0036000291452 are the same product.",
+  "input": {
+    "cartItems": [
+      { "sku": "IMPORTED", "ean": "036000291452", "name": "Imported product (UPC-A)", "price": 10.00, "quantity": 1, "stock": 10 },
+      { "sku": "COOKIES", "ean": "7891234000088", "name": "Sandwich Cookies 140g", "price": 4.50, "quantity": 2, "stock": 10 }
+    ],
+    "offers": [
+      { "ean": "0036000291452", "price": 10.00, "discountedPrice": 9.00 },
+      { "sku": "COOKIES", "ean": "7891234000071", "price": 4.50, "discountedPrice": 3.99 },
+      { "sku": "NOT-IN-CART", "price": 1.00, "discountedPrice": 0.50 }
+    ]
+  },
+  "expected": {
+    "valid": true,
+    "issues": [],
+    "summary": {
+      "itemCount": 2,
+      "unitCount": 3,
+      "subtotalCents": 1900,
+      "discountCents": 100,
+      "totalCents": 1800
+    },
+    "items": [
+      {
+        "sku": "IMPORTED",
+        "ean": "036000291452",
+        "name": "Imported product (UPC-A)",
+        "status": "ok",
+        "requestedQuantity": 1,
+        "quantity": 1,
+        "unitPriceCents": 1000,
+        "finalUnitPriceCents": 900,
+        "subtotalCents": 1000,
+        "discountCents": 100,
+        "totalCents": 900,
+        "offerApplied": true,
+        "issues": []
+      },
+      {
+        "sku": "COOKIES",
+        "ean": "7891234000088",
+        "name": "Sandwich Cookies 140g",
+        "status": "ok",
+        "requestedQuantity": 2,
+        "quantity": 2,
+        "unitPriceCents": 450,
+        "finalUnitPriceCents": 450,
+        "subtotalCents": 900,
+        "discountCents": 0,
+        "totalCents": 900,
+        "offerApplied": false,
+        "issues": []
+      }
+    ]
+  }
+}

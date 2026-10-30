@@ -1,0 +1,84 @@
+{
+  "description": "Prices may be JSON numbers or decimal strings. Either way they are read from their text, never through float64: every form below is R$ 49.90.",
+  "input": {
+    "cartItems": [
+      { "sku": "A", "price": 49.9, "quantity": 1, "stock": 10 },
+      { "sku": "B", "price": "49.90", "quantity": 1, "stock": 10 },
+      { "sku": "C", "price": 4.99e1, "quantity": 1, "stock": 10 },
+      { "sku": "D", "price": "4990e-2", "quantity": 1, "stock": 10 }
+    ]
+  },
+  "expected": {
+    "valid": true,
+    "issues": [],
+    "summary": {
+      "itemCount": 4,
+      "unitCount": 4,
+      "subtotalCents": 19960,
+      "discountCents": 0,
+      "totalCents": 19960
+    },
+    "items": [
+      {
+        "sku": "A",
+        "ean": "",
+        "name": "",
+        "status": "ok",
+        "requestedQuantity": 1,
+        "quantity": 1,
+        "unitPriceCents": 4990,
+        "finalUnitPriceCents": 4990,
+        "subtotalCents": 4990,
+        "discountCents": 0,
+        "totalCents": 4990,
+        "offerApplied": false,
+        "issues": []
+      },
+      {
+        "sku": "B",
+        "ean": "",
+        "name": "",
+        "status": "ok",
+        "requestedQuantity": 1,
+        "quantity": 1,
+        "unitPriceCents": 4990,
+        "finalUnitPriceCents": 4990,
+        "subtotalCents": 4990,
+        "discountCents": 0,
+        "totalCents": 4990,
+        "offerApplied": false,
+        "issues": []
+      },
+      {
+        "sku": "C",
+        "ean": "",
+        "name": "",
+        "status": "ok",
+        "requestedQuantity": 1,
+        "quantity": 1,
+        "unitPriceCents": 4990,
+        "finalUnitPriceCents": 4990,
+        "subtotalCents": 4990,
+        "discountCents": 0,
+        "totalCents": 4990,
+        "offerApplied": false,
+        "issues": []
+      },
+      {
+        "sku": "D",
+        "ean": "",
+        "name": "",
+        "status": "ok",
+        "requestedQuantity": 1,
+        "quantity": 1,
+        "unitPriceCents": 4990,
+        "finalUnitPriceCents": 4990,
+        "subtotalCents": 4990,
+        "discountCents": 0,
+        "totalCents": 4990,
+        "offerApplied": false,
+        "issues": []
+      }
+    ]
+  }
+}

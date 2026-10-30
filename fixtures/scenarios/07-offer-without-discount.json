@@ -1,0 +1,49 @@
+{
+  "description": "An offer whose price is not lower than the regular price is ignored, and the reason is reported.",
+  "input": {
+    "cartItems": [
+      { "sku": "CHEESE", "name": "Fresh Cheese 500g", "price": 12.00, "quantity": 1, "stock": 10 }
+    ],
+    "offers": [
+      { "sku": "CHEESE", "price": 12.00, "discountedPrice": 12.00 },
+      { "sku": "CHEESE", "price": 12.00, "discountedPrice": 13.00 }
+    ]
+  },
+  "expected": {
+    "valid": true,
+    "issues": [],
+    "summary": {
+      "itemCount": 1,
+      "unitCount": 1,
+      "subtotalCents": 1200,
+      "discountCents": 0,
+      "totalCents": 1200
+    },
+    "items": [
+      {
+        "sku": "CHEESE",
+        "ean": "",
+        "name": "Fresh Cheese 500g",
+        "status": "ok",
+        "requestedQuantity": 1,
+        "quantity": 1,
+        "unitPriceCents": 1200,
+        "finalUnitPriceCents": 1200,
+        "subtotalCents": 1200,
+        "discountCents": 0,
+        "totalCents": 1200,
+        "offerApplied": false,
+        "issues": [
+          {
+            "code": "OFFER_WITHOUT_DISCOUNT",
+            "message": "Offer ignored: its price (R$ 12.00) is not lower than the regular price (R$ 12.00)."
+          },
+          {
+            "code": "OFFER_WITHOUT_DISCOUNT",
+            "message": "Offer ignored: its price (R$ 13.00) is not lower than the regular price (R$ 12.00)."
+          }
+        ]
+      }
+    ]
+  }
+}

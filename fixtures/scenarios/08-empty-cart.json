@@ -1,0 +1,21 @@
+{
+  "description": "An empty cart is not valid.",
+  "input": { "cartItems": [] },
+  "expected": {
+    "valid": false,
+    "issues": [
+      {
+        "code": "EMPTY_CART",
+        "message": "The cart has no items available for purchase."
+      }
+    ],
+    "summary": {
+      "itemCount": 0,
+      "unitCount": 0,
+      "subtotalCents": 0,
+      "discountCents": 0,
+      "totalCents": 0
+    },
+    "items": []
+  }
+}

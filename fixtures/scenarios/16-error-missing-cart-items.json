@@ -1,0 +1,9 @@
+{
+  "description": "The cartItems field is required (here it came under another name).",
+  "input": { "items": [ { "sku": "A", "price": 1.00, "quantity": 1, "stock": 1 } ] },
+  "expectedError": {
+    "code": "INVALID_INPUT",
+    "message": "cartItems: is required",
+    "path": "cartItems"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "description": "EAN with a wrong check digit (the right one would be 7891234000019).",
+  "input": { "cartItems": [ { "sku": "COFFEE-500G", "ean": "7891234000010", "price": 18.90, "quantity": 1, "stock": 1 } ] },
+  "expectedError": {
+    "code": "INVALID_INPUT",
+    "message": "cartItems[0].ean: EAN/GTIN has an invalid check digit: \"7891234000010\"",
+    "path": "cartItems[0].ean"
+  }
+}

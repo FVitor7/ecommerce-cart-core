@@ -1,0 +1,9 @@
+{
+  "description": "The quantity must be an integer.",
+  "input": { "cartItems": [ { "sku": "A", "price": 1.00, "quantity": 1.5, "stock": 10 } ] },
+  "expectedError": {
+    "code": "INVALID_INPUT",
+    "message": "cartItems[0].quantity: must be an integer, got 1.5",
+    "path": "cartItems[0].quantity"
+  }
+}

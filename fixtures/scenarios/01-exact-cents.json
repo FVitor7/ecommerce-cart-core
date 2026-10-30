@@ -1,0 +1,68 @@
+{
+  "description": "Everything is computed in integer cents: R$ 0.10 × 3 is exactly R$ 0.30 (in float64, 0.1 * 3 = 0.30000000000000004) and R$ 1.10 × 3 is R$ 3.30 (in float64, 3.3000000000000003).",
+  "input": {
+    "cartItems": [
+      { "sku": "BAG", "name": "Plastic Bag", "price": 0.10, "quantity": 3, "stock": 500 },
+      { "sku": "BLUE-PEN", "name": "Blue Ballpoint Pen", "price": 1.10, "quantity": 3, "stock": 100 },
+      { "sku": "MINT-CANDY", "name": "Mint Candy", "price": 0.20, "quantity": 1, "stock": 100 }
+    ]
+  },
+  "expected": {
+    "valid": true,
+    "issues": [],
+    "summary": {
+      "itemCount": 3,
+      "unitCount": 7,
+      "subtotalCents": 380,
+      "discountCents": 0,
+      "totalCents": 380
+    },
+    "items": [
+      {
+        "sku": "BAG",
+        "ean": "",
+        "name": "Plastic Bag",
+        "status": "ok",
+        "requestedQuantity": 3,
+        "quantity": 3,
+        "unitPriceCents": 10,
+        "finalUnitPriceCents": 10,
+        "subtotalCents": 30,
+        "discountCents": 0,
+        "totalCents": 30,
+        "offerApplied": false,
+        "issues": []
+      },
+      {
+        "sku": "BLUE-PEN",
+        "ean": "",
+        "name": "Blue Ballpoint Pen",
+        "status": "ok",
+        "requestedQuantity": 3,
+        "quantity": 3,
+        "unitPriceCents": 110,
+        "finalUnitPriceCents": 110,
+        "subtotalCents": 330,
+        "discountCents": 0,
+        "totalCents": 330,
+        "offerApplied": false,
+        "issues": []
+      },
+      {
+        "sku": "MINT-CANDY",
+        "ean": "",
+        "name": "Mint Candy",
+        "status": "ok",
+        "requestedQuantity": 1,
+        "quantity": 1,
+        "unitPriceCents": 20,
+        "finalUnitPriceCents": 20,
+        "subtotalCents": 20,
+        "discountCents": 0,
+        "totalCents": 20,
+        "offerApplied": false,
+        "issues": []
+      }
+    ]
+  }
+}

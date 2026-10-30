@@ -1,0 +1,8 @@
+{
+  "description": "Overly nested JSON is refused before decoding, so that malicious input cannot exhaust the stack of the WebAssembly module. Real carts nest 3 or 4 levels; the limit is 64.",
+  "input": { "cartItems": [], "meta": [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]] },
+  "expectedError": {
+    "code": "INVALID_INPUT",
+    "message": "the JSON nests more than 64 levels deep"
+  }
+}

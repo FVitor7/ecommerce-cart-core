@@ -1,0 +1,41 @@
+{
+  "description": "When more than one offer applies to an item, the lowest price wins.",
+  "input": {
+    "cartItems": [
+      { "sku": "CHOC-90G", "ean": "7891234000071", "name": "Milk Chocolate 90g", "price": 6.49, "quantity": 2, "stock": 30 }
+    ],
+    "offers": [
+      { "sku": "CHOC-90G", "price": 6.49, "discountedPrice": 5.99 },
+      { "ean": "7891234000071", "price": 6.49, "discountedPrice": 4.99 },
+      { "sku": "CHOC-90G", "ean": "7891234000071", "price": 6.49, "discountedPrice": 5.49 }
+    ]
+  },
+  "expected": {
+    "valid": true,
+    "issues": [],
+    "summary": {
+      "itemCount": 1,
+      "unitCount": 2,
+      "subtotalCents": 1298,
+      "discountCents": 300,
+      "totalCents": 998
+    },
+    "items": [
+      {
+        "sku": "CHOC-90G",
+        "ean": "7891234000071",
+        "name": "Milk Chocolate 90g",
+        "status": "ok",
+        "requestedQuantity": 2,
+        "quantity": 2,
+        "unitPriceCents": 649,
+        "finalUnitPriceCents": 499,
+        "subtotalCents": 1298,
+        "discountCents": 300,
+        "totalCents": 998,
+        "offerApplied": true,
+        "issues": []
+      }
+    ]
+  }
+}

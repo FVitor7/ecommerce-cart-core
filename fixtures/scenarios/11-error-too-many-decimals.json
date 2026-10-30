@@ -1,0 +1,9 @@
+{
+  "description": "Amounts must be exact cents; the engine never rounds on its own.",
+  "input": { "cartItems": [ { "sku": "A", "price": 49.999, "quantity": 1, "stock": 1 } ] },
+  "expectedError": {
+    "code": "INVALID_INPUT",
+    "message": "cartItems[0].price: must have at most 2 decimal places (cents), got 49.999",
+    "path": "cartItems[0].price"
+  }
+}

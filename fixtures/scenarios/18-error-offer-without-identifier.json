@@ -1,0 +1,12 @@
+{
+  "description": "An offer must identify the product by sku or ean.",
+  "input": {
+    "cartItems": [ { "sku": "A", "price": 1.00, "quantity": 1, "stock": 1 } ],
+    "offers": [ { "price": 1.00, "discountedPrice": 0.50 } ]
+  },
+  "expectedError": {
+    "code": "INVALID_INPUT",
+    "message": "offers[0]: an offer must identify the product by sku or ean",
+    "path": "offers[0]"
+  }
+}

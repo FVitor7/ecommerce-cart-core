@@ -1,0 +1,9 @@
+{
+  "description": "Negative price.",
+  "input": { "cartItems": [ { "sku": "A", "price": -1.00, "quantity": 1, "stock": 1 } ] },
+  "expectedError": {
+    "code": "INVALID_INPUT",
+    "message": "cartItems[0].price: must not be negative",
+    "path": "cartItems[0].price"
+  }
+}

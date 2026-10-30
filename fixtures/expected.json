@@ -1,0 +1,123 @@
+{
+  "valid": false,
+  "issues": [],
+  "summary": {
+    "itemCount": 5,
+    "unitCount": 10,
+    "subtotalCents": 18660,
+    "discountCents": 1900,
+    "totalCents": 16760
+  },
+  "items": [
+    {
+      "sku": "COFFEE-500G",
+      "ean": "7891234000019",
+      "name": "Ground Coffee 500g",
+      "status": "ok",
+      "requestedQuantity": 3,
+      "quantity": 3,
+      "unitPriceCents": 1890,
+      "finalUnitPriceCents": 1590,
+      "subtotalCents": 5670,
+      "discountCents": 900,
+      "totalCents": 4770,
+      "offerApplied": true,
+      "issues": [
+        {
+          "code": "DUPLICATE_SKU_MERGED",
+          "message": "This product appeared in 2 cart lines; their quantities were added up."
+        }
+      ]
+    },
+    {
+      "sku": "RICE-5KG",
+      "ean": "7891234000026",
+      "name": "White Rice 5kg",
+      "status": "ok",
+      "requestedQuantity": 1,
+      "quantity": 1,
+      "unitPriceCents": 2790,
+      "finalUnitPriceCents": 2790,
+      "subtotalCents": 2790,
+      "discountCents": 0,
+      "totalCents": 2790,
+      "offerApplied": false,
+      "issues": []
+    },
+    {
+      "sku": "OLIVE-OIL-500ML",
+      "ean": "7891234000033",
+      "name": "Extra Virgin Olive Oil 500ml",
+      "status": "adjusted",
+      "requestedQuantity": 4,
+      "quantity": 2,
+      "unitPriceCents": 3990,
+      "finalUnitPriceCents": 3490,
+      "subtotalCents": 7980,
+      "discountCents": 1000,
+      "totalCents": 6980,
+      "offerApplied": true,
+      "issues": [
+        {
+          "code": "QUANTITY_ADJUSTED",
+          "message": "Quantity reduced from 4 to 2 due to limited stock."
+        }
+      ]
+    },
+    {
+      "sku": "MILK-1L",
+      "ean": "7891234000040",
+      "name": "Whole Milk 1L",
+      "status": "unavailable",
+      "requestedQuantity": 12,
+      "quantity": 0,
+      "unitPriceCents": 479,
+      "finalUnitPriceCents": 479,
+      "subtotalCents": 0,
+      "discountCents": 0,
+      "totalCents": 0,
+      "offerApplied": false,
+      "issues": [
+        {
+          "code": "OUT_OF_STOCK",
+          "message": "Out of stock; it will not be charged."
+        }
+      ]
+    },
+    {
+      "sku": "DETERGENT-1600G",
+      "ean": "7891234000057",
+      "name": "Laundry Detergent 1.6kg",
+      "status": "ok",
+      "requestedQuantity": 1,
+      "quantity": 1,
+      "unitPriceCents": 2190,
+      "finalUnitPriceCents": 2190,
+      "subtotalCents": 2190,
+      "discountCents": 0,
+      "totalCents": 2190,
+      "offerApplied": false,
+      "issues": [
+        {
+          "code": "OFFER_PRICE_MISMATCH",
+          "message": "Offer ignored: it was created for a regular price of R$ 23.90, but the product now costs R$ 21.90."
+        }
+      ]
+    },
+    {
+      "sku": "BAG",
+      "ean": "",
+      "name": "Plastic Bag",
+      "status": "ok",
+      "requestedQuantity": 3,
+      "quantity": 3,
+      "unitPriceCents": 10,
+      "finalUnitPriceCents": 10,
+      "subtotalCents": 30,
+      "discountCents": 0,
+      "totalCents": 30,
+      "offerApplied": false,
+      "issues": []
+    }
+  ]
+}

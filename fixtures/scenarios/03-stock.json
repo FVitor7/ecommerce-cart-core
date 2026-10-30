@@ -1,0 +1,78 @@
+{
+  "description": "Stock: the quantity is capped at the available stock (status adjusted), and items without stock are unavailable and not charged. The cart is no longer valid.",
+  "input": {
+    "cartItems": [
+      { "sku": "OK", "name": "In stock", "price": 10.00, "quantity": 2, "stock": 2 },
+      { "sku": "PARTIAL", "name": "Partial stock", "price": 10.00, "quantity": 5, "stock": 3 },
+      { "sku": "SOLD-OUT", "name": "Out of stock", "price": 10.00, "quantity": 1, "stock": 0 }
+    ]
+  },
+  "expected": {
+    "valid": false,
+    "issues": [],
+    "summary": {
+      "itemCount": 2,
+      "unitCount": 5,
+      "subtotalCents": 5000,
+      "discountCents": 0,
+      "totalCents": 5000
+    },
+    "items": [
+      {
+        "sku": "OK",
+        "ean": "",
+        "name": "In stock",
+        "status": "ok",
+        "requestedQuantity": 2,
+        "quantity": 2,
+        "unitPriceCents": 1000,
+        "finalUnitPriceCents": 1000,
+        "subtotalCents": 2000,
+        "discountCents": 0,
+        "totalCents": 2000,
+        "offerApplied": false,
+        "issues": []
+      },
+      {
+        "sku": "PARTIAL",
+        "ean": "",
+        "name": "Partial stock",
+        "status": "adjusted",
+        "requestedQuantity": 5,
+        "quantity": 3,
+        "unitPriceCents": 1000,
+        "finalUnitPriceCents": 1000,
+        "subtotalCents": 3000,
+        "discountCents": 0,
+        "totalCents": 3000,
+        "offerApplied": false,
+        "issues": [
+          {
+            "code": "QUANTITY_ADJUSTED",
+            "message": "Quantity reduced from 5 to 3 due to limited stock."
+          }
+        ]
+      },
+      {
+        "sku": "SOLD-OUT",
+        "ean": "",
+        "name": "Out of stock",
+        "status": "unavailable",
+        "requestedQuantity": 1,
+        "quantity": 0,
+        "unitPriceCents": 1000,
+        "finalUnitPriceCents": 1000,
+        "subtotalCents": 0,
+        "discountCents": 0,
+        "totalCents": 0,
+        "offerApplied": false,
+        "issues": [
+          {
+            "code": "OUT_OF_STOCK",
+            "message": "Out of stock; it will not be charged."
+          }
+        ]
+      }
+    ]
+  }
+}

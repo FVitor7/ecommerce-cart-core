@@ -1,0 +1,62 @@
+{
+  "description": "Lines with the same SKU are added up before checking stock: each line (3 units) fits the stock of 5, but together (6) they do not.",
+  "input": {
+    "cartItems": [
+      { "sku": "COFFEE-500G", "ean": "7891234000019", "name": "Ground Coffee 500g", "price": 18.90, "quantity": 3, "stock": 5 },
+      { "sku": "RICE-5KG", "ean": "7891234000026", "name": "White Rice 5kg", "price": 27.90, "quantity": 1, "stock": 15 },
+      { "sku": "COFFEE-500G", "ean": "7891234000019", "name": "Ground Coffee 500g", "price": 18.90, "quantity": 3, "stock": 5 }
+    ]
+  },
+  "expected": {
+    "valid": false,
+    "issues": [],
+    "summary": {
+      "itemCount": 2,
+      "unitCount": 6,
+      "subtotalCents": 12240,
+      "discountCents": 0,
+      "totalCents": 12240
+    },
+    "items": [
+      {
+        "sku": "COFFEE-500G",
+        "ean": "7891234000019",
+        "name": "Ground Coffee 500g",
+        "status": "adjusted",
+        "requestedQuantity": 6,
+        "quantity": 5,
+        "unitPriceCents": 1890,
+        "finalUnitPriceCents": 1890,
+        "subtotalCents": 9450,
+        "discountCents": 0,
+        "totalCents": 9450,
+        "offerApplied": false,
+        "issues": [
+          {
+            "code": "DUPLICATE_SKU_MERGED",
+            "message": "This product appeared in 2 cart lines; their quantities were added up."
+          },
+          {
+            "code": "QUANTITY_ADJUSTED",
+            "message": "Quantity reduced from 6 to 5 due to limited stock."
+          }
+        ]
+      },
+      {
+        "sku": "RICE-5KG",
+        "ean": "7891234000026",
+        "name": "White Rice 5kg",
+        "status": "ok",
+        "requestedQuantity": 1,
+        "quantity": 1,
+        "unitPriceCents": 2790,
+        "finalUnitPriceCents": 2790,
+        "subtotalCents": 2790,
+        "discountCents": 0,
+        "totalCents": 2790,
+        "offerApplied": false,
+        "issues": []
+      }
+    ]
+  }
+}

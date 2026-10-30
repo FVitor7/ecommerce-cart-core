@@ -1,0 +1,67 @@
+{
+  "description": "When no item is in stock there is nothing to buy, so the cart is not valid.",
+  "input": {
+    "cartItems": [
+      { "sku": "MILK-1L", "name": "Whole Milk 1L", "price": 4.79, "quantity": 12, "stock": 0 },
+      { "sku": "BREAD", "name": "Sliced Bread", "price": 8.99, "quantity": 1, "stock": 0 }
+    ]
+  },
+  "expected": {
+    "valid": false,
+    "issues": [
+      {
+        "code": "EMPTY_CART",
+        "message": "The cart has no items available for purchase."
+      }
+    ],
+    "summary": {
+      "itemCount": 0,
+      "unitCount": 0,
+      "subtotalCents": 0,
+      "discountCents": 0,
+      "totalCents": 0
+    },
+    "items": [
+      {
+        "sku": "MILK-1L",
+        "ean": "",
+        "name": "Whole Milk 1L",
+        "status": "unavailable",
+        "requestedQuantity": 12,
+        "quantity": 0,
+        "unitPriceCents": 479,
+        "finalUnitPriceCents": 479,
+        "subtotalCents": 0,
+        "discountCents": 0,
+        "totalCents": 0,
+        "offerApplied": false,
+        "issues": [
+          {
+            "code": "OUT_OF_STOCK",
+            "message": "Out of stock; it will not be charged."
+          }
+        ]
+      },
+      {
+        "sku": "BREAD",
+        "ean": "",
+        "name": "Sliced Bread",
+        "status": "unavailable",
+        "requestedQuantity": 1,
+        "quantity": 0,
+        "unitPriceCents": 899,
+        "finalUnitPriceCents": 899,
+        "subtotalCents": 0,
+        "discountCents": 0,
+        "totalCents": 0,
+        "offerApplied": false,
+        "issues": [
+          {
+            "code": "OUT_OF_STOCK",
+            "message": "Out of stock; it will not be charged."
+          }
+        ]
+      }
+    ]
+  }
+}

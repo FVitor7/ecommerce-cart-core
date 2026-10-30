@@ -1,0 +1,9 @@
+{
+  "description": "Totals above 2^53 − 1 cents are refused, so that JavaScript (which reads JSON numbers as float64) always gets the exact value.",
+  "input": { "cartItems": [ { "sku": "A", "price": 1000000.00, "quantity": 100000000, "stock": 100000000 } ] },
+  "expectedError": {
+    "code": "INVALID_INPUT",
+    "message": "cartItems[0]: the item total exceeds the supported range",
+    "path": "cartItems[0]"
+  }
+}

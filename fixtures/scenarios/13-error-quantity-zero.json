@@ -1,0 +1,9 @@
+{
+  "description": "The requested quantity must be at least 1.",
+  "input": { "cartItems": [ { "sku": "A", "price": 1.00, "quantity": 0, "stock": 1 } ] },
+  "expectedError": {
+    "code": "INVALID_INPUT",
+    "message": "cartItems[0].quantity: must be at least 1",
+    "path": "cartItems[0].quantity"
+  }
+}

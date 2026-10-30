@@ -1,0 +1,14 @@
+{
+  "description": "Lines with the same SKU must agree on price, stock and EAN; otherwise the cart is inconsistent.",
+  "input": {
+    "cartItems": [
+      { "sku": "COFFEE-500G", "price": 18.90, "quantity": 1, "stock": 40 },
+      { "sku": "COFFEE-500G", "price": 15.90, "quantity": 1, "stock": 40 }
+    ]
+  },
+  "expectedError": {
+    "code": "INVALID_INPUT",
+    "message": "cartItems[1].price: SKU \"COFFEE-500G\" is already in cartItems[0] with a different price",
+    "path": "cartItems[1].price"
+  }
+}

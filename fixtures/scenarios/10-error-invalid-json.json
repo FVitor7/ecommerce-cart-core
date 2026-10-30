@@ -1,0 +1,8 @@
+{
+  "description": "Malformed JSON.",
+  "rawInput": "{\"cartItems\": [",
+  "expectedError": {
+    "code": "INVALID_JSON",
+    "message": "invalid JSON: unexpected EOF"
+  }
+}
