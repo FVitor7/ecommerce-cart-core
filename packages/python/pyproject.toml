@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ecommerce-cart-core"
+version = "0.1.0"
+description = "E-commerce cart calculation with rules written in Go and compiled to WebAssembly: the same result in Python, Node.js and the browser."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["wasmtime>=25"]
+# Keeps the proof of concept from being uploaded to the public PyPI by mistake.
+classifiers = ["Private :: Do Not Upload"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ecommerce_cart_core"]
+# calc.wasm is generated (make build) and ignored by git; ship it anyway.
+artifacts = ["src/ecommerce_cart_core/calc.wasm"]
+
+[tool.hatch.build.targets.sdist]
+artifacts = ["src/ecommerce_cart_core/calc.wasm"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
