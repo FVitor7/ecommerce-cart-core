@@ -1,0 +1,13 @@
+# Artifacts of `make build`
+/dist/
+
+# Everything runs in Docker; these only appear if something runs on the host.
+.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+node_modules/
+.next/
+next-env.d.ts
+*.tsbuildinfo
+*.tgz
