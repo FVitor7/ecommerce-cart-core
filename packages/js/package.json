@@ -1,0 +1,27 @@
+{
+  "name": "ecommerce-cart-core",
+  "version": "0.1.0",
+  "description": "E-commerce cart calculation with rules written in Go and compiled to WebAssembly: the same result in Node.js, Next.js, the browser and Python.",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./calc.wasm": "./calc.wasm"
+  },
+  "types": "./index.d.ts",
+  "files": [
+    "src",
+    "index.d.ts",
+    "calc.wasm"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}
