@@ -1,0 +1,67 @@
+# Everything runs in containers: the host needs only Docker (and make), and the
+# working tree gets no .venv or node_modules. The Makefile drives these services.
+# Versions come from the environment, defaulting to the values below.
+#
+# `docker compose up` starts only the Next.js example (http://localhost:3000).
+# The other services are build and test steps: `scale: 0` keeps `up` from
+# starting them, while `docker compose run <service>` still runs them.
+
+name: ecommerce-cart-core
+
+services:
+  # calc.wasm compiled with TinyGo: the input of both packages.
+  wasm:
+    image: ecommerce-cart-core/wasm
+    build:
+      context: .
+      dockerfile: core/Dockerfile
+      target: wasm
+      args:
+        TINYGO_VERSION: ${TINYGO_VERSION:-0.43.0}
+    scale: 0
+
+  # gofmt, go vet and go test of the rules.
+  go:
+    image: ecommerce-cart-core/go:${GO_VERSION:-1.27}
+    build:
+      context: .
+      dockerfile: core/Dockerfile
+      target: test
+      args:
+        GO_VERSION: ${GO_VERSION:-1.27}
+    scale: 0
+
+  # The Python package: wheel and sdist in /dist, pytest on the installed wheel.
+  python:
+    image: ecommerce-cart-core/python:${PYTHON_VERSION:-3.13}
+    build:
+      context: .
+      dockerfile: packages/python/Dockerfile
+      args:
+        PYTHON_VERSION: ${PYTHON_VERSION:-3.13}
+      additional_contexts:
+        wasm: service:wasm
+    scale: 0
+
+  # The npm package: tarball in /dist, node --test on the packed files.
+  js:
+    image: ecommerce-cart-core/js:${NODE_VERSION:-24}
+    build:
+      context: .
+      dockerfile: packages/js/Dockerfile
+      args:
+        NODE_VERSION: ${NODE_VERSION:-24}
+      additional_contexts:
+        wasm: service:wasm
+    scale: 0
+
+  # The Next.js example, using the npm package built above.
+  nextjs:
+    image: ecommerce-cart-core/nextjs
+    build:
+      context: .
+      dockerfile: examples/nextjs/Dockerfile
+      additional_contexts:
+        js: service:js
+    ports:
+      - "3000:3000"

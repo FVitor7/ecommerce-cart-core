@@ -1,0 +1,17 @@
+# Only sources go into the images: no local builds, caches, .venv or node_modules.
+.git
+dist
+**/.venv
+**/__pycache__
+**/.pytest_cache
+**/*.egg-info
+**/node_modules
+**/.next
+**/next-env.d.ts
+**/*.tsbuildinfo
+**/*.tgz
+**/.DS_Store
+# Generated inside the images from core/
+packages/python/src/ecommerce_cart_core/calc.wasm
+packages/js/calc.wasm
+packages/js/src/calc-wasm.js
