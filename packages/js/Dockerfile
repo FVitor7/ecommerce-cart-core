@@ -6,7 +6,7 @@
 # The tarball ends up in /dist, and the tests run against the packed files,
 # the way users get the package.
 
-ARG NODE_VERSION=24
+ARG NODE_VERSION=26
 
 FROM node:${NODE_VERSION}-slim AS build
 WORKDIR /src/packages/js

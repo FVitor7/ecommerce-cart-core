@@ -33,24 +33,24 @@ services:
 
   # The Python package: wheel and sdist in /dist, pytest on the installed wheel.
   python:
-    image: ecommerce-cart-core/python:${PYTHON_VERSION:-3.13}
+    image: ecommerce-cart-core/python:${PYTHON_VERSION:-3.15}
     build:
       context: .
       dockerfile: packages/python/Dockerfile
       args:
-        PYTHON_VERSION: ${PYTHON_VERSION:-3.13}
+        PYTHON_VERSION: ${PYTHON_VERSION:-3.15}
       additional_contexts:
         wasm: service:wasm
     scale: 0
 
   # The npm package: tarball in /dist, node --test on the packed files.
   js:
-    image: ecommerce-cart-core/js:${NODE_VERSION:-24}
+    image: ecommerce-cart-core/js:${NODE_VERSION:-26}
     build:
       context: .
       dockerfile: packages/js/Dockerfile
       args:
-        NODE_VERSION: ${NODE_VERSION:-24}
+        NODE_VERSION: ${NODE_VERSION:-26}
       additional_contexts:
         wasm: service:wasm
     scale: 0

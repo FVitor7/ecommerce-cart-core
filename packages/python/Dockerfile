@@ -6,7 +6,7 @@
 # The wheel and sdist end up in /dist, and the tests run against the installed
 # wheel, the way users get the package.
 
-ARG PYTHON_VERSION=3.13
+ARG PYTHON_VERSION=3.15
 
 FROM python:${PYTHON_VERSION}-slim AS build
 ENV PIP_DISABLE_PIP_VERSION_CHECK=1 PIP_ROOT_USER_ACTION=ignore

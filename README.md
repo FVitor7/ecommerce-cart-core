@@ -229,8 +229,8 @@ make clean             # delete dist/, the containers and the images of the proj
 | Runtime | Default | `make test-versions` |
 |---|---|---|
 | Go | 1.27 | 1.25, 1.26 and 1.27 |
-| Python | 3.13 | 3.9 to 3.15 |
-| Node.js | 24 | 18, 20, 22, 24 and 26 |
+| Python | 3.15 | 3.9 to 3.15 |
+| Node.js | 26 | 18, 20, 22, 24 and 26 |
 
 `calc.wasm` is compiled with TinyGo 0.43.0. To change a version for one run:
 `make test-js NODE_VERSION=22`.
@@ -242,7 +242,7 @@ make clean             # delete dist/, the containers and the images of the proj
 | [`packages/js/Dockerfile`](packages/js/Dockerfile) | builds the `.tgz` and runs the tests on the packed files |
 | [`examples/nextjs/Dockerfile`](examples/nextjs/Dockerfile) | production build of the example, with the npm package built above |
 | [`docker-compose.yml`](docker-compose.yml) | wires it together: the `calc.wasm` of `core` reaches the packages through `additional_contexts` |
-| [`.github/workflows/ci.yml`](.github/workflows/ci.yml) | on every push to `main`, every pull request and weekly: `make test`, `make demo` and `make build` (with `dist/` attached to the run and a size limit on `calc.wasm`), and each `make test-versions` target as a job of its own |
+| [`.github/workflows/ci.yml`](.github/workflows/ci.yml) | on every push to `main`, every pull request and weekly: `make test`, `make demo` and `make build` on the default versions, with `dist/` attached to the run and a size limit on `calc.wasm` (`make test-versions` runs locally only) |
 
 The package tests run on what users install: the installed wheel and the files of the `.tgz`.
 Both check that they carry exactly the `calc.wasm` compiled from `core`.

@@ -4,8 +4,8 @@
 
 # Default versions; override per call, e.g. make test-python PYTHON_VERSION=3.10
 GO_VERSION     ?= 1.27
-PYTHON_VERSION ?= 3.13
-NODE_VERSION   ?= 24
+PYTHON_VERSION ?= 3.15
+NODE_VERSION   ?= 26
 TINYGO_VERSION ?= 0.43.0
 export GO_VERSION PYTHON_VERSION NODE_VERSION TINYGO_VERSION
 
@@ -13,8 +13,6 @@ export GO_VERSION PYTHON_VERSION NODE_VERSION TINYGO_VERSION
 GO_VERSIONS     := 1.25 1.26 1.27
 PYTHON_VERSIONS := 3.9 3.10 3.11 3.12 3.13 3.14 3.15
 NODE_VERSIONS   := 18 20 22 24 26
-VERSION_TARGETS := $(GO_VERSIONS:%=test-go-%) $(PYTHON_VERSIONS:%=test-python-%) \
-	$(NODE_VERSIONS:%=test-js-%)
 
 COMPOSE := docker compose
 RUN     := $(COMPOSE) run --rm -T --quiet-build
@@ -26,7 +24,7 @@ copy-out = id=$$(docker create $(1) none) && docker cp -q $$id:$(2) $(3); \
 .DEFAULT_GOAL := help
 .PHONY: help build build-go build-python build-js test test-go test-python test-js \
 	test-nextjs test-versions test-go-versions test-python-versions test-js-versions \
-	demo nextjs fixtures version ci-matrix clean
+	demo nextjs fixtures version clean
 
 help: ## list the targets
 	@echo "Usage: make <target>"
@@ -121,9 +119,6 @@ version: ## print the package version; fails if the two packages declare differe
 		py=$$(sed -n 's/^version = "\([^"]*\)".*/\1/p' packages/python/pyproject.toml); \
 		if [ -n "$$js" ] && [ "$$js" = "$$py" ]; then echo "$$js"; else \
 			echo "Version mismatch: packages/js has '$$js', packages/python has '$$py'." >&2; exit 1; fi
-
-ci-matrix: ## the test-versions targets as a JSON list, for the CI matrix
-	@printf '"%s",' $(VERSION_TARGETS) | sed 's/,$$//; s/.*/[&]/'
 
 clean: ## delete dist/, the containers and the images of the project
 	rm -rf dist

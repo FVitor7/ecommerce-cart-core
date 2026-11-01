@@ -4,7 +4,7 @@
 # root. Named context "js": the image of the npm package (packages/js/Dockerfile),
 # whose /src/packages/js holds the packed package.
 
-ARG NODE_VERSION=24
+ARG NODE_VERSION=26
 
 FROM node:${NODE_VERSION}-slim AS build
 ENV NEXT_TELEMETRY_DISABLED=1
