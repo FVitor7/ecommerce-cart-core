@@ -1,0 +1,83 @@
+# Runs the same make targets as a developer machine: the runner needs only
+# Docker and make, like the host does.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  # The base images use moving tags (python:3.13-slim gets every patch
+  # release), so a weekly run catches upstream breakage between commits.
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test:
+    name: Default versions
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      # 331 KB today; without GOEXPERIMENT=nojsonv2 (core/Dockerfile) it
+      # doubles to 701 KB.
+      WASM_MAX_KB: 400
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Both packages declare the same version
+        run: make version
+
+      - name: Every test suite
+        run: make test
+
+      - name: Python and Node.js give the same output
+        run: make demo
+
+      - name: Build the packages
+        run: make build
+
+      - name: Size of calc.wasm
+        run: |
+          kb=$(( $(wc -c < dist/calc.wasm) / 1000 ))
+          echo "calc.wasm: $kb KB (limit $WASM_MAX_KB KB)" | tee -a "$GITHUB_STEP_SUMMARY"
+          if [ "$kb" -gt "$WASM_MAX_KB" ]; then
+            echo "::error file=core/Dockerfile::calc.wasm grew to $kb KB, over the $WASM_MAX_KB KB limit."
+            exit 1
+          fi
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+          retention-days: 14
+
+  matrix:
+    name: Version matrix
+    runs-on: ubuntu-latest
+    outputs:
+      targets: ${{ steps.targets.outputs.targets }}
+    steps:
+      - uses: actions/checkout@v7
+      - id: targets
+        run: echo "targets=$(make -s ci-matrix)" >> "$GITHUB_OUTPUT"
+
+  versions:
+    name: make ${{ matrix.target }}
+    needs: matrix
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        target: ${{ fromJSON(needs.matrix.outputs.targets) }}
+    steps:
+      - uses: actions/checkout@v7
+      - run: make ${{ matrix.target }}

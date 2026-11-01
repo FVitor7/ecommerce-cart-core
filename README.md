@@ -222,6 +222,7 @@ make test-versions     # every suite on every supported version
 make demo              # the same checkout in Python and in Node.js, with the outputs compared
 make nextjs            # the Next.js example at http://localhost:3000
 make fixtures          # regenerate the expected outputs in fixtures/
+make version           # the package version (fails if the two packages disagree)
 make clean             # delete dist/, the containers and the images of the project
 ```
 
@@ -241,6 +242,7 @@ make clean             # delete dist/, the containers and the images of the proj
 | [`packages/js/Dockerfile`](packages/js/Dockerfile) | builds the `.tgz` and runs the tests on the packed files |
 | [`examples/nextjs/Dockerfile`](examples/nextjs/Dockerfile) | production build of the example, with the npm package built above |
 | [`docker-compose.yml`](docker-compose.yml) | wires it together: the `calc.wasm` of `core` reaches the packages through `additional_contexts` |
+| [`.github/workflows/ci.yml`](.github/workflows/ci.yml) | on every push to `main`, every pull request and weekly: `make test`, `make demo` and `make build` (with `dist/` attached to the run and a size limit on `calc.wasm`), and each `make test-versions` target as a job of its own |
 
 The package tests run on what users install: the installed wheel and the files of the `.tgz`.
 Both check that they carry exactly the `calc.wasm` compiled from `core`.
@@ -286,9 +288,9 @@ cart and compare their totals (`make nextjs`).
 
 ## Next steps
 
-- A CI pipeline that runs `make test-versions` and `make build` and publishes `dist/` to a private
-  registry, with the same version in both packages. The packages are marked so that they cannot go
-  to the public npm and PyPI by mistake (`"private": true` and `Private :: Do Not Upload`).
+- A release workflow that, on a version tag, checks the tag against `make version`, runs
+  `make build` and publishes `dist/` to a private registry. The packages are marked so that they
+  cannot go to the public npm and PyPI by mistake (`"private": true` and `Private :: Do Not Upload`).
 - The Edge Runtime (Vercel Edge, Cloudflare Workers) does not allow compiling WebAssembly from
   bytes; it would need a variant that imports the `.wasm` as a module.
 - More rules in the same place: coupons, percentage discounts (with a single rounding policy),
